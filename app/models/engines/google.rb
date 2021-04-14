@@ -1,8 +1,8 @@
-module Engine
-  class Google
+module Engines
+  class Google < Base
 
     def url
-      "https://www.googleapis.com/customsearch/v1?key=#{api_key}&cx=#{cx_code}:omuauf_lfve"
+      "https://www.googleapis.com/customsearch/v1?key=#{api_key}&cx=#{cx_code}"
     end
 
     private
