@@ -24,7 +24,7 @@ class MakeSearch
   def self.both_results(text)
     Context.new(
       collection:
-        Array.wrap(bing_results(text).collection) + Array.wrap(google_results(text).collection)
+      Array.wrap(bing_results(text).collection).concat(Array.wrap(google_results(text).collection)).uniq
     )
   end
 end
