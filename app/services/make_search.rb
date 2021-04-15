@@ -1,7 +1,7 @@
 class MakeSearch
   def self.call(query_params)
-    text = query_params["text"]
-    engine = query_params["engine"]
+    text = query_params.fetch("text", "")
+    engine = query_params.fetch("engine", "")
     return Context.new(collection: []) if text.empty? || engine.empty?
 
     case engine.downcase
