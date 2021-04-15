@@ -2,14 +2,14 @@ class MakeSearch
   def self.call(query_params)
     text = query_params["text"]
     engine = query_params["engine"]
-    return [] if text.empty? || engine.empty?
+    return Context.new(collection: []) if text.empty? || engine.empty?
 
     case engine.downcase
     when 'google' then google_results(text)
     when 'bing' then bing_results(text)
     when 'both' then both_results(text)
     else
-      raise("UnknowEngineError")
+      Context.fail!("EngineSearch not defined")
     end
   end
 

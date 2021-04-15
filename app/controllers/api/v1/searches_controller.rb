@@ -3,9 +3,13 @@ class Api::V1::SearchesController < ApplicationController
   end
 
   def create
-    @results = MakeSearch.call(query_params)
+    @result = MakeSearch.call(query_params)
 
-    render json: { data: @results }
+    if @result.success?
+      render json: { data: @result.collection }
+    else
+      render json: { error: @result.error }, status: :unprocessable_entity
+    end
   end
 
   private
