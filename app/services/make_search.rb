@@ -22,6 +22,9 @@ class MakeSearch
   end
 
   def self.both_results(text)
-    [bing_results(text),(google_results(text))].reduce([], :concat)
+    Context.new(
+      collection:
+        Array.wrap(bing_results(text).collection) + Array.wrap(google_results(text).collection)
+    )
   end
 end

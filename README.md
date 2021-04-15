@@ -1,24 +1,30 @@
-# README
+# SearchEngine API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This search engine needs to have the appropiate keys to make requests in
+Google and Bing. See the proper API documentation to get those keys.
 
-Things you may want to cover:
+Google: https://developers.google.com/custom-search/docs/overview
+Bing: https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/overview
 
-* Ruby version
+Once you get the keys, rename the `.env.example` to `.env` and paste it
+into the file.
 
-* System dependencies
+## Make a request
 
-* Configuration
+```
+curl --location --request POST 'localhost:3000/api/v1/search' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "engine": "both",
+    "text": "bible red"
+}'
+```
 
-* Database creation
+* engine: _can be google, bing or both_
+* text: _text that you want to find in the engine search_
 
-* Database initialization
+## Running test
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+bundle exec rails tests
+```

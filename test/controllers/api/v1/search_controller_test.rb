@@ -60,7 +60,6 @@ class Api::V1::SearchControllerTest < ActionDispatch::IntegrationTest
   end
 
   class BingSearchTest < ActionDispatch::IntegrationTest
-
     test "should return data search" do
       VCR.use_cassette('bing_valid_response') do
         post api_v1_search_url, params: {search: {engine: 'bing', text: 'coso'}}
@@ -97,6 +96,26 @@ class Api::V1::SearchControllerTest < ActionDispatch::IntegrationTest
         VCR.use_cassette('bing_invalid_response') do
           post api_v1_search_url, params: {search: {engine: 'bing', text: 'coso'}}
           assert_response :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  class BothSearchTest < ActionDispatch::IntegrationTest
+    test "should return data search" do
+      VCR.use_cassette('bing_valid_response') do
+        VCR.use_cassette('google_valid_response') do
+          post api_v1_search_url, params: {search: {engine: 'both', text: 'coso'}}
+          assert_response :success
+        end
+      end
+    end
+
+    test "should return valid data when one fails" do
+      VCR.use_cassette('bing_valid_response') do
+        VCR.use_cassette('google_invalid_response') do
+          post api_v1_search_url, params: {search: {engine: 'both', text: 'coso'}}
+          assert_response :success
         end
       end
     end
