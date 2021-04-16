@@ -22,6 +22,11 @@ curl --location --request POST 'localhost:3000/api/v1/search' \
 
 * engine: _can be google, bing or both_
 * text: _text that you want to find in the engine search_
+* offset: _indicates the number of search results to skip before return
+  data_
+
+By default, bing and google returns 10 results per page. Keep in mind
+that when we use the `both` engine, it doesn't return duplicate sites.
 
 ## Running test
 

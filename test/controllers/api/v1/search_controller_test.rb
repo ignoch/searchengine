@@ -20,6 +20,13 @@ class Api::V1::SearchControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
+    test "should return data search with offset defined" do
+      VCR.use_cassette('google_valid_response_with_offset') do
+        post api_v1_search_url, params: { search: {engine: 'google', text: 'coso', offset:11 }}
+        assert_response :success
+      end
+    end
+
     test "should encode text data search" do
       VCR.use_cassette('google_red_wagon_response') do
         post api_v1_search_url, params: {search: {engine: 'google', text: 'red wagon!'}}
@@ -63,6 +70,13 @@ class Api::V1::SearchControllerTest < ActionDispatch::IntegrationTest
     test "should return data search" do
       VCR.use_cassette('bing_valid_response') do
         post api_v1_search_url, params: {search: {engine: 'bing', text: 'coso'}}
+        assert_response :success
+      end
+    end
+
+    test "should return data search with offset defined" do
+      VCR.use_cassette('bing_valid_response_with_offset') do
+        post api_v1_search_url, params: { search: {engine: 'bing', text: 'coso', offset:10 }}
         assert_response :success
       end
     end

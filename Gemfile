@@ -27,7 +27,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'vcr'
   gem 'webmock'
-  gem 'simplecov'
+  gem 'simplecov', require: false
 end
 
 group :development do

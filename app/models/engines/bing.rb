@@ -1,14 +1,18 @@
 module Engines
   class Bing < Base
-
-    def query_options
-      {
-        headers: { 'Ocp-Apim-Subscription-Key': access_key }
-      }
+    def header_options
+      { 'Ocp-Apim-Subscription-Key': access_key }
     end
 
     def url
       "https://api.bing.microsoft.com/v7.0/search"
+    end
+
+    def decorate_options(options)
+      offset = options.fetch("offset", 0)
+      {
+        query: { offset: offset }
+      }
     end
 
     private

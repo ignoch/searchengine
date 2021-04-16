@@ -7,7 +7,7 @@ class Engines::BingTest < ActiveSupport::TestCase
 
   test 'valid keywords generate a url' do
     VCR.use_cassette('bing_valid_response') do
-      response = @bing.search
+      response = @bing.search({offset: 0})
       assert_equal 200, response.code
     end
   end

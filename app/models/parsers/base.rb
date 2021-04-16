@@ -2,8 +2,8 @@ module Parsers
   class Base
     attr_accessor :response, :context
 
-    def initialize(engine)
-      @response = engine.search
+    def initialize(engine, options={})
+      @response = engine.search(options)
       @context = Context.new
     end
 
@@ -12,7 +12,7 @@ module Parsers
       context
     end
 
-    def data_root
+    def data_root(body)
       []
     end
 

@@ -15,6 +15,6 @@ class Api::V1::SearchesController < ApplicationController
   private
 
   def query_params
-    params.require(:search).permit(:engine, :text)
+    params.require(:search).permit(:engine, :text, :offset)
   end
 end
