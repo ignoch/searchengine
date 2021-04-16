@@ -6,6 +6,10 @@ class Context < OpenStruct
     context
   end
 
+  def self.empty_collection
+    Context.new(collection: [])
+  end
+
   def success?
     !failure?
   end

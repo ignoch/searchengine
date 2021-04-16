@@ -2,7 +2,7 @@ class MakeSearch
   def self.call(query_params)
     text = query_params.delete("text") {""}
     engine = query_params.delete("engine") {""}
-    return Context.new(collection: []) if text.empty? || engine.empty?
+    return Context.empty_collection if text.empty? || engine.empty?
 
     case engine.downcase
     when 'google' then google_results(text, query_params)

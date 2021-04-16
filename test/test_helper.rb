@@ -3,6 +3,7 @@ SimpleCov.start 'rails'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative "../config/environment"
+require "helpers/api_response"
 require "rails/test_help"
 require "webmock"
 require "vcr"

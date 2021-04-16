@@ -36,7 +36,12 @@ module Parsers
     end
 
     def response_error
-      response.parsed_response["error"]["message"]
+      error_hash = if response.parsed_response.is_a?(String)
+        JSON.parse(response.parsed_response)
+      else
+        response.parsed_response
+      end
+      error_hash["error"]["message"]
     end
   end
 end
