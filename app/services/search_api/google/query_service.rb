@@ -4,12 +4,7 @@ class SearchApi::Google::QueryService < ApplicationService
 
   def initialize(search, params={})
     @search = search
-    offset = params.delete("offset") { 1 }
-    params = params.merge(auth_query_params)
-
-    @options = { query: params.merge({
-      q: search, start: offset
-    })}
+    @options = build_options(search, params)
   end
 
   def call
@@ -23,6 +18,16 @@ class SearchApi::Google::QueryService < ApplicationService
 
   private
   attr_reader :options, :params
+
+  def build_options(search, params)
+    offset = params.delete("offset") { 1 }
+    params = params.merge(auth_query_params)
+    {
+      query: params.merge({
+        q: search, start: offset
+      })
+    }
+  end
 
   def auth_query_params
     {
