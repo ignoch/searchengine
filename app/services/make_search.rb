@@ -18,7 +18,7 @@ class MakeSearch
   end
 
   def self.bing_results(text, options)
-    Parsers::Bing.new(Engines::Bing.new(text), options).results
+    SearchApi::Bing::SearchService.new(text, options).call
   end
 
   def self.both_results(text, options)
