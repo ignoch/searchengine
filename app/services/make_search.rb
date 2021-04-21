@@ -14,7 +14,7 @@ class MakeSearch
   end
 
   def self.google_results(text, options)
-    Parsers::Google.new(Engines::Google.new(text), options).results
+    SearchApi::Google::SearchService.new(text, options).call
   end
 
   def self.bing_results(text, options)
