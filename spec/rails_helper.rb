@@ -8,7 +8,11 @@ require 'rspec/rails'
 require "vcr"
 require "simplecov"
 require File.expand_path("helpers/api_response", __dir__)
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter do |source_file|
+    source_file.lines.count < 8
+  end
+end
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'

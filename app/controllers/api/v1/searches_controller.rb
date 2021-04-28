@@ -3,7 +3,7 @@ class Api::V1::SearchesController < ApplicationController
   end
 
   def create
-    @result = MakeSearch.call(query_params)
+    @result = SearchApi::MakeSearch.call(query_params)
 
     if @result.success?
       render json: { data: @result.collection }
