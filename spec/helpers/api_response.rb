@@ -1,5 +1,5 @@
-class ApiResponse
-  def self.google_response
+module ApiResponse
+  def google_response
     [
       {"name"=>"Welcome to COSO", "url"=>"https://www.coso.org/Pages/default.aspx"},
       {"name"=>"Internal Control: 5 Key Principles of COSO Framework | I.S. Partners", "url"=>"https://www.ispartnersllc.com/blog/5-key-principles-of-coso-framework/"},
@@ -14,7 +14,7 @@ class ApiResponse
     ]
   end
 
-  def self.google_response_offset
+  def google_response_offset
     [
       {"name"=>"Internal Control Audit and Compliance: Documentation and Testing ...", "url"=>"https://www.amazon.com/Internal-Control-Audit-Compliance-Documentation/dp/1118996216"},
       {"name"=>"COSO Internal Control Certificate Program | AICPA CERTIFICATES", "url"=>"https://certificates.aicpastore.com/certificate-programs/coso-internal-control"},
@@ -29,7 +29,7 @@ class ApiResponse
     ]
   end
 
-  def self.google_response_encoded
+  def google_response_encoded
     [
       {"name"=>"21 Red Wagon Rd, Yarmouth, ME 04096 | Zillow", "url"=>"https://www.zillow.com/homedetails/21-Red-Wagon-Rd-Yarmouth-ME-04096/84923786_zpid/"},
       {"name"=>"Red Wagon Detailing (@red_wagon_autodetailing) • Instagram ...", "url"=>"https://www.instagram.com/red_wagon_autodetailing/?hl=en"},
@@ -44,7 +44,7 @@ class ApiResponse
     ]
   end
 
-  def self.bing_response
+  def bing_response
     [
       {"name"=>"¿Qué es el modelo COSO? | GlobalSUITE Solutions", "url"=>"https://www.globalsuitesolutions.com/es/que-es-modelo-coso/"},
       {"name"=>"COSO Marco de referencia para la implementación, gestión y ...", "url"=>"https://www2.deloitte.com/content/dam/Deloitte/mx/Documents/risk/COSO-Sesion1.pdf"},
@@ -59,7 +59,7 @@ class ApiResponse
     ]
   end
 
-  def self.bing_response_offset
+  def bing_response_offset
     [
       {"name"=>"COSO. Metodología de mejores prácticas para el control ...", "url"=>"https://contaduriapublica.org.mx/2012/12/04/coso-metodologia-de-mejores-practicas-para-el-control-interno/"},
       {"name"=>"COSO como metodología de Auditoría - Soy Conta", "url"=>"https://www.soyconta.com/coso-como-metodologia-de-auditoria/"},
@@ -74,7 +74,7 @@ class ApiResponse
     ]
   end
 
-  def  self.bing_response_encoded
+  def bing_response_encoded
     [
       {"name"=>"Red Wagons - Walmart.com", "url"=>"https://www.walmart.com/c/kp/red-wagons"},
       {"name"=>"Red Wagon - Home - Brownwood, Texas - Menu, Prices ...", "url"=>"https://www.facebook.com/Red-Wagon-905363129479290/?__xts__%5B0%5D=68.ARDFgG8ck4cUe9yek3AamUHn3pA5j-_oSnJ2wY18BlSDcUJLVhxdlF3obTRQRE21XQzFCB4WlkGW1hjgT1a7i9d7LVQC9isJdExHc-3wt8MJA6bJZ4iiW6CfOxCGERpVyiRkSVgpqQETHqcJnn7v-qbxN088__pZk5v8evrGvi-2oDVd5wS324mM8qB6zuk3OnLbgPBV8t0hnbjsSmF9a2pHo4FL_nlsYRWicg7PTRe7V0cP-mSDQg_1PDxS2cOuEvv2som7Da7HjiFiKbv7O6l5k1516b6N22j3JRa1xtiC7san3616OA"},
@@ -89,7 +89,7 @@ class ApiResponse
     ]
   end
 
-  def self.both_response
-    self.google_response.concat(self.bing_response).uniq
+  def both_response
+    google_response.concat(bing_response).uniq
   end
 end
