@@ -1,20 +1,25 @@
-class Api::V1::SearchesController < ApplicationController
-  def show
-  end
+# frozen_string_literal: true
 
-  def create
-    @result = SearchApi::MakeSearch.call(query_params)
+module Api
+  module V1
+    class SearchesController < ApplicationController
+      def show; end
 
-    if @result.success?
-      render json: { data: @result.collection }
-    else
-      render json: { error: @result.error }, status: :unprocessable_entity
+      def create
+        @result = SearchApi::MakeSearch.call(query_params)
+
+        if @result.success?
+          render json: { data: @result.collection }
+        else
+          render json: { error: @result.error }, status: :unprocessable_entity
+        end
+      end
+
+      private
+
+      def query_params
+        params.require(:search).permit(:engine, :text, :offset)
+      end
     end
-  end
-
-  private
-
-  def query_params
-    params.require(:search).permit(:engine, :text, :offset)
   end
 end

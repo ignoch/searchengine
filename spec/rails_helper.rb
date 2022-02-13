@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-require "vcr"
-require "simplecov"
-require File.expand_path("helpers/api_response", __dir__)
+require 'vcr'
+require 'simplecov'
+require File.expand_path('helpers/api_response', __dir__)
 SimpleCov.start 'rails' do
   add_filter do |source_file|
     source_file.lines.count < 8
@@ -19,7 +21,7 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.filter_sensitive_data('<GOOGLE_CX>') { ENV['GOOGLE_CX_CODE'] }
   c.filter_sensitive_data('<GOOGLE_KEY>') { ENV['GOOGLE_API_KEY'] }
-  c.filter_sensitive_data('<BING_ID>'){ ENV['BING_SUBSCRIPTION_ID'] }
+  c.filter_sensitive_data('<BING_ID>') { ENV['BING_SUBSCRIPTION_ID'] }
 end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

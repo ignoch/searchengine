@@ -1,5 +1,6 @@
-class Context < OpenStruct
+# frozen_string_literal: true
 
+class Context < OpenStruct
   def self.fail!(message)
     context = Context.new
     context.fail!(message)
@@ -20,7 +21,6 @@ class Context < OpenStruct
 
   def fail!(message)
     @failed = true
-    self.error =  message
+    self.error = message
   end
 end
-

@@ -1,13 +1,13 @@
 FROM ruby:2.7
 
-# throw errors if Gemfile has been modified since Gemfile.lock
-RUN bundle config --global frozen 1
+RUN addgroup ignoch
+RUN adduser --disabled-password --ingroup ignoch ignoch
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
+COPY --chown=ignoch Gemfile Gemfile.lock ./
 RUN bundle install
+COPY --chown=ignoch . .
 
-COPY . .
-
-CMD ['irb']
+USER ignoch
+CMD ['bin/irb']
