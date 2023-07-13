@@ -33,3 +33,6 @@
 # Ignore env file
 .env
 coverage/
+
+# Ignore pid server file
+tmp/pids/*

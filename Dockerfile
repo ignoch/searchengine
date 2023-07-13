@@ -10,4 +10,4 @@ RUN bundle install
 COPY --chown=ignoch . .
 
 USER ignoch
-CMD ['bin/irb']
+ENTRYPOINT ["./entrypoint.sh"]
